@@ -24,12 +24,8 @@ import { loginUser } from '@/app/redux/thunk/auth/login.thunk';
 import { auth } from '../../fierbase/firebase'
 import { getAdditionalUserInfo, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { signupUser } from '@/app/redux/thunk/auth/signup.thunk';
+import { loginSchema } from './schema/login';
 
-
-export const loginSchema = z.object({
-  email: z.string().min(6, { message: 'Invalid email address' }),
-  password: z.string().min(6, { message: 'Password must be at least 6 characters' }),
-});
 type LoginFormData = z.infer<typeof loginSchema>;
 
 export default function LoginForm() {
@@ -75,8 +71,7 @@ export default function LoginForm() {
       const password = user.uid;
       const firebase = "firbase";
 
-      console.log("Google user:", user);
-      console.log("Is new user?", additionalInfo?.isNewUser); 
+      
 
       if (additionalInfo?.isNewUser) {
          
