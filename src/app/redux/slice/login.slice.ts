@@ -1,8 +1,9 @@
-import { loginSchema } from '@/app/(auth)/login/page';
+
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import z from 'zod';
 import { loginUser } from '../thunk/auth/login.thunk';
+import { loginSchema } from '@/app/(auth)/login/schema/login';
 type loginFormData = z.infer<typeof loginSchema>;
 
 export interface authinfo {
