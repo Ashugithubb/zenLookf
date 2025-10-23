@@ -1,0 +1,9 @@
+.images {
+  height: 410;
+}
+@media screen and (max-width: 768px) {
+
+ .images {
+    height: 200; 
+  }
+}

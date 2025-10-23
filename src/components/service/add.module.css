@@ -1,0 +1,21 @@
+.button {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+
+@media screen and (max-width: 768px) {
+
+    .button {
+        display: flex;
+        justify-content: flex-start;
+        align-content: center;
+    }
+
+    .title :global(.MuiInputBase-root) {
+    width: 310px;
+  }
+
+
+}

@@ -1,0 +1,96 @@
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #fff8f0, #f5e1c8);
+}
+
+.loginCard {
+  background: #ffffff;
+  padding: 40px 50px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  width: 380px;
+  animation: fadeInUp 0.8s ease;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #c49a3a;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input :global(.MuiOutlinedInput-root) {
+  border-radius: 10px;
+}
+
+.btn {
+  background-color: #c49a3a !important;
+  color: #2d2d2d !important;
+  font-weight: 600 !important;
+  border-radius: 10px !important;
+  text-transform: none !important;
+  padding: 10px !important;
+  font-size: 1rem !important;
+  transition: transform 0.3s ease, background-color 0.3s ease !important;
+}
+
+.btn:hover {
+  background-color: #e1b95a !important;
+  transform: translateY(-3px);
+}
+
+.footerText {
+  margin-top: 25px;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.footerText span {
+  color: #c49a3a;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.footerText span:hover {
+  color: #2d2d2d;
+}
+
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@media (max-width: 480px) {
+  .loginCard {
+    width: 90%;
+    padding: 30px 25px;
+  }
+  .title {
+    font-size: 1.8rem;
+  }
+}

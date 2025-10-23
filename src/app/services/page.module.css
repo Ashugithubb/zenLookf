@@ -1,0 +1,47 @@
+.searchField {
+    width: 280px !important;
+    background-color: #fff  !important;
+    border-radius: 30px  !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1)  !important;
+}
+
+.searchField .MuiOutlinedInput-root {
+    border-radius: 30px  !important;
+    transition: all 0.3s ease  !important;
+}
+
+.searchField .MuiOutlinedInput-root:hover fieldset {
+    border-color: #c49a3a  !important; 
+}
+
+.searchField .MuiOutlinedInput-root.Mui-focused fieldset {
+    border-color: #c49a3a  !important;
+    box-shadow: 0 0 8px rgba(196, 154, 58, 0.4)  !important;
+}
+
+.searchField .MuiInputLabel-root.Mui-focused {
+    color: #c49a3a  !important;
+}
+
+.searchField input {
+    padding: 10px 14px  !important;
+}
+.searchBox{
+   display:flex; 
+}
+ .myBooking{
+    background-color: #c49a3a!important;
+  }
+@media screen and (max-width: 768px) {
+
+ .searchBox {
+   display:flex; 
+   justify-content: center;
+   align-content: center;
+   padding-left: 70;
+  }
+  .myBooking{
+    margin-left:230px !important;
+    background-color: #c49a3a!important;
+  }
+}
