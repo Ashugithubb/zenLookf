@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useAppDispatch, useAppSelector } from "@/app/redux/hook/hook";
@@ -10,7 +10,7 @@ import TimeSelector from "@/components/bookings/slot";
 import { Dayjs } from "dayjs";
 import DateRangeFilter from "@/components/bookings/date";
 import BookingCard from "@/components/bookings/booking-cards";
-import { Typography, Card, CardContent, Grid, Box } from "@mui/material";
+import { Typography, Card, CardContent, Box, Stack } from "@mui/material";
 import UnavailableSlotForm from "@/components/unavilable-slots/unavilable.slots";
 
 interface FilterValues {
@@ -37,26 +37,31 @@ const FiltersComponent = () => {
 
   const watchedValues = watch();
 
-const filterValues = React.useMemo(() => watchedValues, [JSON.stringify(watchedValues)]);
+  const filterValues = React.useMemo(() => watchedValues, [JSON.stringify(watchedValues)]);
 
- useEffect(() => {
-  const formattedFilters = {
-    page: 1,
-    limit: 10,
-    search: filterValues.search || undefined,
-    category: filterValues.category || undefined, 
-   slot: filterValues.slot ? filterValues.slot.format("HH:mm") : undefined,
-    startDate: filterValues.startDate ? filterValues.startDate.toISOString() : undefined,
-    endDate: filterValues.endDate ? filterValues.endDate.toISOString() : undefined,
-  };
+  useEffect(() => {
+    const formattedFilters = {
+      page: 1,
+      limit: 10,
+      search: filterValues.search || undefined,
+      category: filterValues.category || undefined,
+      slot: filterValues.slot ? filterValues.slot.format("HH:mm") : undefined,
+      startDate: filterValues.startDate ? filterValues.startDate.toISOString() : undefined,
+      endDate: filterValues.endDate ? filterValues.endDate.toISOString() : undefined,
+    };
 
-  dispatch(getAllBookings(formattedFilters));
-}, [filterValues, dispatch]);
-const [open,setOpen] = useState(false);
+    dispatch(getAllBookings(formattedFilters));
+  }, [filterValues, dispatch]);
+
+  const [open, setOpen] = useState(false);
+
   return (
     <>
       <Navbar />
- <Box sx={{paddingTop:"15px"}}><UnavailableSlotForm/></Box>
+      <Box sx={{ paddingTop: "15px" }}>
+        <UnavailableSlotForm />
+      </Box>
+
       <Box sx={{ mt: 8, px: 4 }}>
         <Card
           sx={{
@@ -76,8 +81,14 @@ const [open,setOpen] = useState(false);
               Bookings Filter
             </Typography>
 
-            <Grid container spacing={2} justifyContent="center">
-              <Grid item xs={12} sm={6} md={3}>
+            {/* Filters Section */}
+            <Stack
+              direction={{ xs: "column", sm: "row" }}
+              spacing={2}
+              justifyContent="center"
+              flexWrap="wrap"
+            >
+              <Box sx={{ flexBasis: { xs: "100%", sm: "45%", md: "20%" } }}>
                 <Controller
                   name="search"
                   control={control}
@@ -85,9 +96,9 @@ const [open,setOpen] = useState(false);
                     <SearchComponent {...field} placeholder="Search bookings..." />
                   )}
                 />
-              </Grid>
+              </Box>
 
-              <Grid item xs={12} sm={6} md={2}>
+              <Box sx={{ flexBasis: { xs: "100%", sm: "45%", md: "15%" } }}>
                 <Controller
                   name="category"
                   control={control}
@@ -95,9 +106,9 @@ const [open,setOpen] = useState(false);
                     <GenderSelectComponent {...field} placeholder="Select Gender" />
                   )}
                 />
-              </Grid>
+              </Box>
 
-              <Grid item xs={12} sm={6} md={2}>
+              <Box sx={{ flexBasis: { xs: "100%", sm: "45%", md: "15%" } }}>
                 <Controller
                   name="slot"
                   control={control}
@@ -105,9 +116,9 @@ const [open,setOpen] = useState(false);
                     <TimeSelector {...field} label="Select Time" />
                   )}
                 />
-              </Grid>
+              </Box>
 
-              <Grid item xs={12} sm={6} md={4}>
+              <Box sx={{ flexBasis: { xs: "100%", sm: "90%", md: "40%" } }}>
                 <Controller
                   name="startDate"
                   control={control}
@@ -120,11 +131,12 @@ const [open,setOpen] = useState(false);
                     />
                   )}
                 />
-              </Grid>
-            </Grid>
+              </Box>
+            </Stack>
           </CardContent>
         </Card>
 
+        {/* Booking Cards */}
         {bookings.length === 0 ? (
           <Typography
             variant="h6"
@@ -135,13 +147,23 @@ const [open,setOpen] = useState(false);
             No Booking Found
           </Typography>
         ) : (
-          <Grid container spacing={2}>
+          <Stack
+            direction="row"
+            spacing={2}
+            flexWrap="wrap"
+            justifyContent="center"
+          >
             {bookings.map((b) => (
-              <Grid item xs={12} sm={6} md={4} key={b.bookingId}>
+              <Box
+                key={b.bookingId}
+                sx={{
+                  flexBasis: { xs: "100%", sm: "45%", md: "30%" },
+                }}
+              >
                 <BookingCard booking={b} />
-              </Grid>
+              </Box>
             ))}
-          </Grid>
+          </Stack>
         )}
       </Box>
     </>
