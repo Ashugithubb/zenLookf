@@ -16,7 +16,7 @@ export const bookServiceThunk = createAsyncThunk(
     async (data: bookServiceData, thunkAPI) => {
         try {
             const response = await axios.post(
-                `http://localhost:3001/services/${data.serviceId}/booking`,
+                 `${process.env.NEXT_PUBLIC_API_URL}/${data.serviceId}/booking`,
                 data,
                 { withCredentials: true }
             );

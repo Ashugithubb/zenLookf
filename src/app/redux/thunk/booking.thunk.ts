@@ -17,7 +17,7 @@ export const getAllBookings = createAsyncThunk(
   'allbookings/bookings',
   async (query: GetBookingServiceQuery, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`http://localhost:3001/booking`, {
+      const response = await axios.get( `${process.env.NEXT_PUBLIC_API_URL}/booking`, {
         withCredentials: true,
         params: query,
         paramsSerializer: params => qs.stringify(params, { arrayFormat: 'repeat' })

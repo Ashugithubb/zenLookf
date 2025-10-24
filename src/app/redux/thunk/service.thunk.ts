@@ -9,7 +9,7 @@ export const getServiceThunk = createAsyncThunk(
   'service/getservice',
   async (query: GetServiceQuery, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`http://localhost:3001/services`, {
+      const response = await axios.get( `${process.env.NEXT_PUBLIC_API_URL}/services`, {
         withCredentials: true,
         params: query,
         paramsSerializer: params => qs.stringify(params, { arrayFormat: 'repeat' })
@@ -28,7 +28,7 @@ export const deleteServiceThunk = createAsyncThunk(
   async (serviceId: number, { rejectWithValue }) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3001/services/${serviceId}`
+         `${process.env.NEXT_PUBLIC_API_URL}/services/${serviceId}`
       );
       return serviceId;
     } catch (error: any) {
@@ -43,7 +43,7 @@ export const editServiceThunk = createAsyncThunk(
     async ({data,id}: {data:ServiceData,id:number}, thunkAPI) => {
         try {
             const response = await axios.patch(
-                `http://localhost:3001/services/${id}`,
+                 `${process.env.NEXT_PUBLIC_API_URL}/services/${id}`,
                 data,
                 { withCredentials: true }
             );
@@ -56,12 +56,11 @@ export const editServiceThunk = createAsyncThunk(
     }
 );
 
-
 export const getTopServiceThunk = createAsyncThunk(
   'topService/gettopservice',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`http://localhost:3001/services/top/three`, {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/services/top/three`, {
         withCredentials: true,
       });
       return response.data;

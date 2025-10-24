@@ -5,7 +5,7 @@ export const cancelBookingThunk = createAsyncThunk(
     "cancel.booking", async (id:number, thunkAPI) => {
         try {
             const response = await axios.delete(
-                `http://localhost:3001/booking/${id}`,
+                 `${process.env.NEXT_PUBLIC_API_URL}/booking/${id}`,
                 { withCredentials: true }
             );
             return response.data;

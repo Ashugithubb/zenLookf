@@ -11,7 +11,7 @@ export const addService = createAsyncThunk(
     async (data: ServiceData, thunkAPI) => {
         try {
             const response = await axios.post(
-                'http://localhost:3001/services',
+                 `${process.env.NEXT_PUBLIC_API_URL}/services`,
                 data,
                 { withCredentials: true }
             );

@@ -8,7 +8,7 @@ export const uploadImage = createAsyncThunk(
       const formData = new FormData();
       formData.append('file', file);
 
-      const res = await axios.post('http://localhost:3001/services/upload', formData, {
+      const res = await axios.post( `${process.env.NEXT_PUBLIC_API_URL}/services/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
