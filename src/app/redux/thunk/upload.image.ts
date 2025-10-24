@@ -16,7 +16,7 @@ export const uploadImage = createAsyncThunk(
      
       return res.data; 
     } catch (error) {
-      return thunkAPI.rejectWithValue('Upload failed');
+      return thunkAPI.rejectWithValue('Upload image failed');
     }
   }
-);
+);  
